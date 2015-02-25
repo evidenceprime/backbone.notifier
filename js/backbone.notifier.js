@@ -71,8 +71,8 @@
                 if (settings.dialog) {
                     strBuilder.push(
                         '<div class="' + settings.baseCls + '-message">' + settings.message +
-                            (settings.loader ? '<div class="' + settings.baseCls + '-loader"></div>' : '') +
-                            '</div>'
+                        (settings.loader ? '<div class="' + settings.baseCls + '-loader"></div>' : '') +
+                        '</div>'
                     );
                 } else {
                     strBuilder.push(
@@ -80,12 +80,20 @@
                         (settings.loader ? '<div class="' + settings.baseCls + '-loader"></div>' : '')
                     );
                 }
-                if (settings.buttons) {
-                    var btnPh = $('<div />');
+                if (settings.buttons && settings.buttons.length) {
+                    var btnPh = $('<div />'),
+                        collSize = Math.floor(12 / settings.buttons.length);
+
                     _.each(settings.buttons, function (btn) {
-                        btnPh.append($('<button/>', btn));
+                        btn.class = 'btn btn-block' + (btn.class ? ' btn-' + btn.class : '');
+                        btnPh.append(
+                            $('<div/>')
+                                .addClass('col-' + collSize)
+                                .append($('<button/>', btn)
+                            )
+                        );
                     });
-                    strBuilder.push('<div class="' + settings.baseCls + '-btns">' + btnPh.html() + '</div>');
+                    strBuilder.push('<div class="row mt-10">' + btnPh.html() + '</div>');
                 }
                 strBuilder.push('</div></div>');
                 return strBuilder.join('');
@@ -387,7 +395,6 @@
             return m;
         }
 
-//		console.log('module "'  + moduleName + '" is not registered.');
         return false;
     };
 
@@ -401,7 +408,6 @@
             $.isFunction(m.disable) && m.disable.call(m, Notifier);
             return m;
         }
-//		console.log('module "'  + moduleName + '" is not registered.');
         return false;
     };
 
