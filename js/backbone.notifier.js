@@ -29,7 +29,6 @@
                 'screenOpacity': .65,	// opacity of dark screen background that goes behind for modals (between 0 to 1)
                 'zIndex': 10000,		// minimal z-index for notifications
                 'width': undefined,		// notification's width
-                'rowMarginTop': 30,		// row margin top
                 'modules': undefined	// modules to register immediately
             },
             transitions: {
@@ -94,7 +93,7 @@
                             )
                         );
                     });
-                    strBuilder.push('<div class="row" style="margin-top: ' + this.options.rowMarginTop + 'px">' + btnPh.html() + '</div>');
+                    strBuilder.push('<div class="row">' + btnPh.html() + '</div>');
                 }
                 strBuilder.push('</div></div>');
                 return strBuilder.join('');
