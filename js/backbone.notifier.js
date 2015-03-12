@@ -45,7 +45,9 @@
                 center: {
                     'in': function (el, inner, options, duration, callback) {
                         el.css({top: options.offsetY - 40, display: 'block'})
-                            .animate({ top: '50%', marginTop: -inner.innerHeight() / 2, opacity: options.opacity}, duration, callback || emptyFn);
+                        setTimeout(function() {
+                            el.animate({ top: '50%', marginTop: -inner.innerHeight() / 2, opacity: options.opacity}, duration, callback || emptyFn);
+                        }, 0)
                     },
                     'out': function (el, inner, options, duration, callback) {
                         el.animate({top: '0%', opacity: 0}, duration, callback || emptyFn);
